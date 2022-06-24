@@ -1,0 +1,20 @@
+
+
+<div style="margin: auto; padding: 10em 30em 0 30em;">
+<form [formGroup]="profileForm" (ngSubmit)="addNewStudent()">
+  <div class="form-group">
+    <label for="studentName">Name</label>
+    <input type="text" formControlName="name" class="form-control" id="studentName" aria-describedby="name" placeholder="Enter name">
+  </div>
+  <br>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email</label>
+    <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+  <br>
+  <label for="studentBranch">Branch</label>
+  <input type="text" formControlName="branch" class="form-control" id="studentBranch" aria-describedby="name" placeholder="Enter branch">
+  <br>
+  <button type="submit" [disabled]="!profileForm.valid" class="btn btn-primary">Submit</button>
+</form>
+</div>

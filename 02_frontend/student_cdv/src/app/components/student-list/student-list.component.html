@@ -1,0 +1,62 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">id</th>
+    <th scope="col">Name</th>
+    <th scope="col">Email</th>
+    <th scope="col">Branch</th>
+    <th scope="col">Edit</th>
+    <th scope="col">Delete</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let student of students; let i = index">
+    <th scope="row">{{ i + 1 }}</th>
+    <td>{{ student.id }}</td>
+    <td>{{ student.name }}</td>
+    <td>{{ student.email }}</td>
+    <td>{{ student.branch }}</td>
+    <td><button (click)="open(content, student.id)" class="btn btn-secondary">Edit</button></td>
+    <td><button (click)="deleteStudent(student.id)" class="btn btn-danger">Remove</button></td>
+  </tr>
+  </tbody>
+</table>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit the Student</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+
+    <form [formGroup]="profileForm" (ngSubmit)="editStudent()">
+      <div class="form-group">
+        <label for="studentName">Name</label>
+        <input type="text" formControlName="name" class="form-control" id="studentName" aria-describedby="name" placeholder="Enter name">
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email</label>
+        <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      </div>
+      <br>
+      <label for="studentBranch">Branch</label>
+      <input type="text" formControlName="branch" class="form-control" id="studentBranch" aria-describedby="name" placeholder="Enter branch">
+      <br>
+      <button type="submit" [disabled]="!profileForm.valid" class="btn btn-primary">Submit</button>
+    </form>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn btn-danger" (click)="modal.close()">Cancel</button>
+  </div>
+</ng-template>
+
+
+<hr>
+
+<pre>{{ closeResult }}</pre>
+
+
